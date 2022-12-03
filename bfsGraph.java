@@ -108,9 +108,14 @@ class graph {
     }
     
     
-    public void bfs(int n,int v) {
+    public void bfs() {
     	//n=no of vertices in the graph
     	//v=starting vertex
+    	System.out.println("BFS TRAVERSAL: ");
+    	System.out.println("no of vertices: ");
+    	int n=sc.nextInt();
+    	System.out.println("starting vertex: ");
+    	v=sc.nextInt();
     	int[] visited=new int[n];
     	for(int i=0;i<n;i++) {
     		visited[i]=0;
@@ -139,18 +144,87 @@ class graph {
     	
     	
     }
+    
+    /*public void recurDfs(int v) {
+    	//v is the starting node
+    	//n=no of vertices in graph
+    	System.out.println("enter the total number of nodes: ");
+    	int n=sc.nextInt();
+    	int[] visited=new int[n];
+    	for(int i=0;i<n;i++) {
+    		visited[i]=0;
+    	}
+    	
+    	visited[v]=1;
+    	node curr=head[v];
+    	System.out.println(v+" ");
+    	while(curr!=null) {
+    		int temp=curr.data;
+    		curr=curr.next;
+    		if(visited[temp]==0) {
+    			
+    			recurDfs(temp);
+    		}
+    		
+    	}
+    	
+    }*/
+    
+    public void dfs() {
+    	System.out.println("BFS TRAVERSAL: ");
+    	System.out.println("no of vertices: ");
+    	int n=sc.nextInt();
+    	System.out.println("starting vertex: ");
+    	v=sc.nextInt();
+    	System.out.println("DFS of given graph is : ");
+        Stack<Integer> st=new Stack<Integer>();
+        int []visited=new int [n];
+        
+        for(int i=0;i<n;i++)
+        {
+            visited[i]=0;
+        }
+        
+        visited[v]=1;
+        st.push(v);
+        
+        while(st.size()>0)
+        {
+            int a=st.pop();
+            System.out.print(" "+a);
+            for(int i=0;i<n;i++)
+            {
+                if(adjMatrix[a][i]==1 && visited[i]==0)
+                {
+                    st.push(i);
+                    visited[i]=1;
+                }
+            }
+        }
+    }
+    
 
 }
 public class bfsGraph {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
 		graph g = new graph();
-        g.listCreate();
-        g.displayList();
-        //g.createMatrix();
-        //g.displayMat();
-        g.bfs(5, 0);
+		System.out.println("choose 1=bfs and 2=dfs");
+		int ch=sc.nextInt();
+		switch(ch) {
+			case 1:g.listCreate();
+			       g.displayList(); 
+			       g.bfs();
+			       break;
+			case 2:g.createMatrix();
+	        	   g.displayMat();
+	        	   g.dfs();
+	        	   break;
+		}
+        
+        
 	}
-
 }
+
